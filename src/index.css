@@ -153,3 +153,457 @@ body {
 .glowing-card:hover::after {
   opacity: 1;
 }
+
+/* =========================
+   FLIP CARD
+========================= */
+
+.flip-card {
+  perspective: 1000px;
+  height: 180px;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .flip-card {
+    height: 190px;
+  }
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.flip-card-front {
+  z-index: 2;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================
+   HERO SPLIT LAYOUT
+========================= */
+
+.hero-split {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-split {
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-split {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    text-align: left;
+  }
+}
+
+.hero-left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-left {
+    flex: 1.15;
+    align-items: flex-start;
+  }
+}
+
+.hero-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-right {
+    flex: 0.85;
+    justify-content: center;
+  }
+}
+
+/* =========================
+   AVATAR STYLES
+========================= */
+
+.hero-avatar-wrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .hero-avatar-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-avatar-wrapper {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-avatar-wrapper {
+    width: 420px;
+    height: 420px;
+  }
+}
+
+.hero-avatar-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.25) 0%,
+    rgba(139, 92, 246, 0.15) 40%,
+    transparent 70%
+  );
+  filter: blur(30px);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+.hero-avatar-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(135deg, #6366f1, #22d3ee, #8b5cf6) border-box;
+  animation: ringRotate 8s linear infinite;
+}
+
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hero-avatar-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  background: var(--surface);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+/* ── Avatar Hover States ──────────────────── */
+
+.hero-avatar-img--hovered {
+  transform: scale(1.04);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.2),
+              0 0 80px rgba(34, 211, 238, 0.1);
+}
+
+.hero-avatar-glow--active {
+  animation: glowPulseActive 2s ease-in-out infinite;
+}
+
+@keyframes glowPulseActive {
+  0%, 100% { opacity: 0.8; transform: scale(1.05); }
+  50% { opacity: 1; transform: scale(1.18); }
+}
+
+.hero-avatar-ring--active {
+  animation: ringRotate 3s linear infinite;
+  border-width: 3px;
+}
+
+/* ── Speech Bubble ────────────────────────── */
+
+.hero-speech-bubble {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+  opacity: 0;
+  transform: translateY(10px) scale(0.8);
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+}
+
+.hero-speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 24px;
+  width: 12px;
+  height: 12px;
+  background: rgba(139, 92, 246, 0.9);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.hero-speech-bubble--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero-speech-bubble svg {
+  animation: waveAnim 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes waveAnim {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(20deg); }
+}
+
+/* ── Orbiting Particles ───────────────────── */
+
+.hero-orbit-particles {
+  position: absolute;
+  inset: -20px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.orbit-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hero-orbit-particles--active .orbit-dot {
+  opacity: 1;
+}
+
+.orbit-dot--1 {
+  background: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+  animation: orbit1 3s linear infinite;
+}
+
+.orbit-dot--2 {
+  background: #22d3ee;
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
+  animation: orbit2 3.5s linear infinite;
+}
+
+.orbit-dot--3 {
+  background: #8b5cf6;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
+  animation: orbit3 4s linear infinite;
+}
+
+.orbit-dot--4 {
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+  animation: orbit4 2.8s linear infinite;
+}
+
+@keyframes orbit1 {
+  0%   { top: 0%;   left: 50%;  }
+  25%  { top: 50%;  left: 100%; }
+  50%  { top: 100%; left: 50%;  }
+  75%  { top: 50%;  left: 0%;   }
+  100% { top: 0%;   left: 50%;  }
+}
+
+@keyframes orbit2 {
+  0%   { top: 50%;  left: 0%;   }
+  25%  { top: 0%;   left: 50%;  }
+  50%  { top: 50%;  left: 100%; }
+  75%  { top: 100%; left: 50%;  }
+  100% { top: 50%;  left: 0%;   }
+}
+
+@keyframes orbit3 {
+  0%   { top: 15%;  left: 15%;  }
+  25%  { top: 15%;  left: 85%;  }
+  50%  { top: 85%;  left: 85%;  }
+  75%  { top: 85%;  left: 15%;  }
+  100% { top: 15%;  left: 15%;  }
+}
+
+@keyframes orbit4 {
+  0%   { top: 85%;  left: 50%;  }
+  25%  { top: 50%;  left: 15%;  }
+  50%  { top: 15%;  left: 50%;  }
+  75%  { top: 50%;  left: 85%;  }
+  100% { top: 85%;  left: 50%;  }
+}
+
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+              height 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.3s ease;
+  mix-blend-mode: screen;
+}
+
+.custom-cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: 1.5px solid rgba(99, 102, 241, 0.3);
+  transition: width 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+              height 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Hide custom cursor on touch devices */
+@media (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-trail {
+    display: none !important;
+  }
+  #home {
+    cursor: auto !important;
+  }
+}
+
+/* =========================
+   WHATSAPP STICKY BUTTON
+========================= */
+
+.whatsapp-sticky {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4),
+              0 0 0 0 rgba(37, 211, 102, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.3s ease;
+  animation: whatsappBounceIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) 2s both;
+}
+
+.whatsapp-sticky:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5),
+              0 0 40px rgba(37, 211, 102, 0.2);
+}
+
+.whatsapp-sticky:active {
+  transform: scale(0.95);
+}
+
+@keyframes whatsappBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(40px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-5px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Pulse ring behind the button */
+.whatsapp-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.5);
+  animation: whatsappPulse 2s ease-out infinite;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
