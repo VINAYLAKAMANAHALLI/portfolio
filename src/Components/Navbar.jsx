@@ -54,7 +54,7 @@ const Navbar = () => {
     <nav
       ref={navRef}
       id="navbar"
-      className={`fixed top-6 left-44 w-full z-50 transition-transform transition-colors duration-500 ${
+      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl z-50 transition-transform transition-colors duration-500 rounded-full ${
         isVisible ? "translate-y-0" : "-translate-y-24"
       } ${
         scrolled
