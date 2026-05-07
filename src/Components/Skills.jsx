@@ -19,7 +19,7 @@ const Skills = () => {
 
       <div className="relative z-10 container-custom">
         {/* Section label */}
-        <div className="text-center mb-24 stagger">
+        <div className="text-center mb-32 stagger">
           <span className="fade-in-up inline-block text-xs font-bold text-indigo-400 tracking-widest uppercase mb-4 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
             Skills
           </span>
@@ -28,14 +28,14 @@ const Skills = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 stagger">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-10 stagger">
           {skills.map((skill) => (
             <div
               key={skill.name}
-              className="fade-in-up group glass-premium glowing-card rounded-2xl p-6 sm:p-8 hover:-translate-y-1.5 cursor-default transition-all duration-300"
+              className="fade-in-up group glass-premium glowing-card rounded-2xl p-8 sm:p-10 hover:-translate-y-2 cursor-default transition-all duration-300"
             >
-              <div className="flex items-center justify-between mb-5">
-                <p className="text-base sm:text-lg font-bold text-white font-[Space_Grotesk] tracking-tight group-hover:text-indigo-300 transition-colors duration-300">
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-lg sm:text-xl font-bold text-white font-[Space_Grotesk] tracking-tight group-hover:text-indigo-300 transition-colors duration-300">
                   {skill.name}
                 </p>
                 <span className="text-xs font-bold text-gray-400 group-hover:text-cyan-300 transition-colors duration-300">

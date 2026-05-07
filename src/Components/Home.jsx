@@ -19,42 +19,42 @@ const Home = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Create a GSAP timeline for smooth, sequenced animations
-      const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
+      const tl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.2 } });
 
       tl.fromTo(
         ".gsap-badge",
         { opacity: 0, y: -30, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.8 }
+        { opacity: 1, y: 0, scale: 1, duration: 1 }
       )
         .fromTo(
           ".gsap-heading",
-          { opacity: 0, y: 40 },
+          { opacity: 0, y: 50 },
           { opacity: 1, y: 0 },
-          "-=0.5"
+          "-=0.7"
         )
         .fromTo(
           ".gsap-role",
-          { opacity: 0, x: -30 },
-          { opacity: 1, x: 0, duration: 0.8 },
-          "-=0.6"
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1 },
+          "-=0.9"
         )
         .fromTo(
           ".gsap-desc",
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          "-=0.5"
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1 },
+          "-=0.8"
         )
         .fromTo(
           ".gsap-btns",
           { opacity: 0, scale: 0.95 },
           { opacity: 1, scale: 1, duration: 0.6 },
-          "-=0.4"
+          "-=0.7"
         )
         .fromTo(
           ".gsap-socials",
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, stagger: 0.15, duration: 0.6 },
-          "-=0.4"
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, stagger: 0.2, duration: 0.8 },
+          "-=0.5"
         );
     }, containerRef);
 
@@ -91,13 +91,13 @@ const Home = () => {
         </h1>
 
         {/* Role */}
-        <h2 className="gsap-role text-xl sm:text-3xl font-semibold text-gray-300 mb-8 tracking-wide">
+        <h2 className="gsap-role text-xl sm:text-3xl font-semibold text-gray-300 mb-10 tracking-wide">
           Frontend Engineer{" "}
           <span className="text-indigo-400 mx-3 opacity-70">|</span> UI/UX Developer
         </h2>
 
         {/* Description */}
-        <p className="gsap-desc max-w-3xl text-gray-400 text-lg sm:text-xl leading-relaxed mb-12">
+        <p className="gsap-desc max-w-3xl text-gray-400 text-lg sm:text-xl leading-loose mb-14">
           I craft highly interactive, scalable, and pixel-perfect digital experiences.
           Specializing in React.js, modern JavaScript, and Tailwind CSS, I bridge the gap
           between elegant design and flawless backend integration to build modern web architectures
@@ -105,7 +105,7 @@ const Home = () => {
         </p>
 
         {/* Buttons */}
-        <div className="gsap-btns flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 mb-20 mt-4">
+        <div className="gsap-btns flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 mb-24 mt-4">
           <a
             href="#projects"
             className="px-10 py-5 text-lg min-w-[220px] text-center rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-bold tracking-wide shadow-lg shadow-indigo-500/25 hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:scale-105 active:scale-95 transition-all duration-300"
@@ -122,7 +122,7 @@ const Home = () => {
         </div>
 
         {/* Socials */}
-        <div className="flex gap-7  mt-20">
+        <div className="flex gap-8 mt-24">
           <a
             href="https://github.com/VINAYLAKAMANAHALLI"
             target="_blank"

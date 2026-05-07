@@ -36,7 +36,7 @@ const Experience = () => {
 
       <div className="relative z-10 container-custom">
         {/* Section label */}
-        <div className="text-center mb-16 stagger">
+        <div className="text-center mb-24 stagger">
           <span className="fade-in-up inline-block text-xs font-bold text-indigo-400 tracking-widest uppercase mb-4 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
             Experience
           </span>
@@ -46,13 +46,13 @@ const Experience = () => {
         </div>
 
         {/* Timeline centered cards */}
-        <div className="flex flex-col gap-10 max-w-4xl mx-auto">
+        <div className="flex flex-col gap-14 max-w-4xl mx-auto stagger">
           {experienceData.map((exp, idx) => (
             <div key={idx} className="relative fade-in-up">
               {/* Card with interactive border/scale */}
-              <div className="glass-premium glowing-card p-6 sm:p-10 hover:-translate-y-1 transition-transform duration-300">
+              <div className="glass-premium glowing-card p-8 sm:p-12 hover:-translate-y-2 transition-transform duration-500">
                 {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-white/5 pb-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 border-b border-white/5 pb-8">
                   <div>
                     <h3 className="text-xl sm:text-2xl font-bold text-white font-[Space_Grotesk] tracking-tight hover:text-indigo-300 transition-colors duration-300">
                       {exp.role}
@@ -71,11 +71,11 @@ const Experience = () => {
                 </div>
 
                 {/* Points */}
-                <ul className="space-y-4">
+                <ul className="space-y-5">
                   {exp.points.map((point, i) => (
                     <li key={i} className="flex items-start gap-4 text-gray-400 hover:text-gray-200 transition-colors duration-300">
-                      <div className="mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 shadow-lg shadow-cyan-400/50" />
-                      <span className="text-sm sm:text-base leading-relaxed font-normal">{point}</span>
+                      <div className="mt-2.5 w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 shadow-lg shadow-cyan-400/50" />
+                      <span className="text-base sm:text-lg leading-relaxed font-normal">{point}</span>
                     </li>
                   ))}
                 </ul>

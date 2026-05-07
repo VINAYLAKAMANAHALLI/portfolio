@@ -14,7 +14,7 @@ const About = () => {
 
       <div className="relative z-10 container-custom">
         {/* Section label */}
-        <div className="text-center mb-24 stagger">
+        <div className="text-center mb-32 stagger">
           <span className="fade-in-up inline-block text-xs font-bold text-indigo-400 tracking-widest uppercase mb-4 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
             About Me
           </span>
@@ -24,7 +24,7 @@ const About = () => {
         </div>
 
         {/* Content grid */}
-        <div className="grid lg:grid-cols-5 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-5 gap-16 lg:gap-24 items-center">
           {/* Image placeholder card — takes 2 columns */}
           <div className="fade-in-up lg:col-span-2 flex justify-center">
             <div className="relative group cursor-pointer">
@@ -57,13 +57,13 @@ const About = () => {
 
           {/* Text content — takes 3 columns */}
           <div className="lg:col-span-3 stagger flex flex-col justify-between h-full">
-            <div className="space-y-6">
-              <p className="fade-in-up text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+            <div className="space-y-8">
+              <p className="fade-in-up text-gray-300 text-base sm:text-xl leading-loose font-normal">
                 I am a Frontend Developer with a BCA degree and experience in
                 building real-world applications including ERP systems and admin
                 dashboards. I focus on clean UI, performance, and user experience.
               </p>
-              <p className="fade-in-up text-gray-400 text-sm sm:text-base leading-relaxed">
+              <p className="fade-in-up text-gray-400 text-base sm:text-lg leading-loose">
                 Passionate about continuous learning and building impactful digital
                 products. I love transforming ideas into pixel-perfect,
                 high-performance web applications.
@@ -71,7 +71,7 @@ const About = () => {
             </div>
 
             {/* Stats row */}
-            <div className="fade-in-up grid grid-cols-3 gap-4 sm:gap-5 mt-12">
+            <div className="fade-in-up grid grid-cols-3 gap-6 sm:gap-8 mt-16">
               {stats.map((stat) => (
                 <div
                   key={stat.label}

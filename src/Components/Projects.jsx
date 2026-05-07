@@ -40,6 +40,45 @@ const projects = [
       </svg>
     ),
   },
+  {
+    title: "E-Commerce Platform",
+    description:
+      "A scalable e-commerce store with real-time cart updates, secure checkout, and a robust product management system.",
+    tags: ["React", "Redux Toolkit", "Stripe API", "Tailwind CSS"],
+    color: "from-emerald-500 to-green-600",
+    link: "#",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
+    ),
+  },
+  {
+    title: "TaskMaster Pro",
+    description:
+      "Advanced task management application with drag-and-drop kanban boards, real-time collaboration, and progress analytics.",
+    tags: ["Next.js", "TypeScript", "MongoDB", "Prisma"],
+    color: "from-orange-500 to-red-600",
+    link: "#",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    title: "ChatConnect",
+    description:
+      "A real-time messaging application supporting private chats, group channels, multimedia sharing, and typing indicators.",
+    tags: ["React", "Node.js", "Socket.io", "Express"],
+    color: "from-pink-500 to-rose-600",
+    link: "#",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+      </svg>
+    ),
+  },
 ];
 
 const Projects = () => {
@@ -50,7 +89,7 @@ const Projects = () => {
 
       <div className="relative z-10 container-custom">
         {/* Section label */}
-        <div className="text-center mb-24 stagger">
+        <div className="text-center mb-32 stagger">
           <span className="fade-in-up inline-block text-xs font-bold text-indigo-400 tracking-widest uppercase mb-4 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
             Projects
           </span>
@@ -60,7 +99,7 @@ const Projects = () => {
         </div>
 
         {/* Cards grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 stagger">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 stagger">
           {projects.map((project) => (
             <a
               href={project.link}
@@ -71,7 +110,7 @@ const Projects = () => {
               <div className={`h-1.5 bg-gradient-to-r ${project.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
 
               <div className="p-6 sm:p-8 flex flex-col h-full justify-between">
-                <div>
+                <div className="mb-8">
                   {/* Icon */}
                   <div
                     className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${project.color} text-white mb-6 group-hover:scale-110 group-hover:shadow-xl transition-all duration-300`}
@@ -80,17 +119,17 @@ const Projects = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-[Space_Grotesk] tracking-tight mb-3.5 group-hover:text-indigo-300 transition-colors duration-300">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white font-[Space_Grotesk] tracking-tight mb-4 group-hover:text-indigo-300 transition-colors duration-300">
                     {project.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+                  <p className="text-gray-400 text-base sm:text-lg leading-relaxed font-normal">
                     {project.description}
                   </p>
                 </div>
 
-                <div>
+                <div className="mt-auto">
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map((tag) => (

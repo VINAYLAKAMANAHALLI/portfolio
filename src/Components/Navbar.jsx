@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -11,45 +12,78 @@ const navLinks = [
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      setScrolled(currentScrollY > 60);
+
+      // Hide navbar on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsVisible(false);
+        setMobileOpen(false); // close mobile menu when scrolling down
+      } else {
+        setIsVisible(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".nav-item", {
+        y: -30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power4.out",
+      });
+    }, navRef);
+    return () => ctx.revert();
   }, []);
 
   return (
     <nav
+      ref={navRef}
       id="navbar"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-6 left-44 w-full z-50 transition-transform transition-colors duration-500 ${
+        isVisible ? "translate-y-0" : "-translate-y-24"
+      } ${
         scrolled
-          ? "bg-[#030712]/75 backdrop-blur-md border-b border-white/5 shadow-2xl py-3"
-          : "bg-transparent py-5"
+          ? "bg-transparent backdrop-blur-xl border-b border-white/5 shadow-2xl py-4"
+          : "bg-transparent py-6 md:py-8"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#home"
-          className="text-2xl font-bold font-[Space_Grotesk] tracking-tight hover:opacity-90 transition-opacity duration-300"
+          className="nav-item text-3xl font-extrabold font-[Space_Grotesk] tracking-tighter hover:opacity-90 transition-opacity duration-300"
         >
           <span className="gradient-text">VL</span>
           <span className="text-cyan-400">.</span>
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="hidden md:flex items-center gap-10 lg:gap-14">
           {navLinks.map((link) => (
-            <li key={link.href}>
+            <li key={link.href} className="nav-item">
               <a
                 href={link.href}
-                className="relative text-sm font-semibold text-gray-400 hover:text-white tracking-wide transition-all duration-300 group hover:-translate-y-0.5 inline-block"
+                className="relative text-base font-bold text-gray-300 hover:text-white tracking-wide transition-all duration-300 group hover:-translate-y-1 inline-block"
               >
                 <span className="relative z-10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-300 group-hover:to-cyan-300 transition-all duration-300">
                   {link.label}
                 </span>
-                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full group-hover:w-full transition-all duration-500 ease-out shadow-[0_0_8px_rgba(34,211,238,0.8)] opacity-0 group-hover:opacity-100" />
+                <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full group-hover:w-full transition-all duration-500 ease-out shadow-[0_0_8px_rgba(34,211,238,0.8)] opacity-0 group-hover:opacity-100" />
               </a>
             </li>
           ))}
@@ -58,7 +92,7 @@ const Navbar = () => {
         {/* CTA */}
         <a
           href="#contact"
-          className="hidden group md:inline-flex items-center gap-2 px-7 py-2.5 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/20 hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:scale-105 active:scale-95 transition-all duration-300"
+          className="nav-item hidden group md:inline-flex items-center gap-2 px-8 py-3 rounded-full text-base font-bold bg-gradient-to-r from-indigo-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/20 hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:scale-105 active:scale-95 transition-all duration-300"
         >
           Let's Talk
           <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +104,7 @@ const Navbar = () => {
         <button
           id="mobile-menu-btn"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors"
+          className="nav-item md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors"
           aria-label="Toggle navigation"
         >
           <span
@@ -103,7 +137,7 @@ const Navbar = () => {
               <a
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300"
+                className="block py-3 text-lg font-bold text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300"
               >
                 {link.label}
               </a>
@@ -113,7 +147,7 @@ const Navbar = () => {
             <a
               href="#contact"
               onClick={() => setMobileOpen(false)}
-              className="block text-center py-3 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/20"
+              className="block text-center py-4 rounded-full text-base font-bold bg-gradient-to-r from-indigo-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/20"
             >
               Let's Talk
             </a>
